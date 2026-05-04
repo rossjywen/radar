@@ -9,6 +9,8 @@ set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # 設置不同平臺的編譯器，目前只支持Ubuntu和MacOS
+# 編譯器會自動匹配，Ubuntu 使用 g++；MacOS 使用 clang++，這是和Makefile的一個區別
+# 如果需要手動的指定編譯器，可以在命令行中使用: CXX=編譯器名稱 cmake ..
 if(APPLE)
     message(STATUS "[Ross]: in MacOS, try to use clang++")
     add_compile_options(-Wall -Wextra -O2)
@@ -18,8 +20,22 @@ elseif(UNIX)
 endif()
 
 
+# 添加所有的源文件
+set(RADAR_SOURCES
+    src/platform/RadarDeviceCommon.cpp
+    src/platform/BoardInstance.cpp
+    example/raw_data.cpp
+    )
+
+
 # 添加可執行文件
-add_executable(radar_test example/raw_data.cpp)
+# 這句代碼就完全等同於Makefile中的 $CXX example/raw_data.cpp -o radar_test
+add_executable(radar_test ${RADAR_SOURCES})
+
+
+# 添加头文件搜索路径
+message(STATUS "[Ross]: include directory: ${CMAKE_CURRENT_SOURCE_DIR}/include")
+target_include_directories(radar_test PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
 
 
 
