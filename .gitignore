@@ -1,0 +1,23 @@
+# build dir
+build/
+out/
+bin/
+
+# MacOS
+.DS_Store
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# compiler
+*.o
+*.a
+*.so
+*.dylib
+*.exe
+
+
+
