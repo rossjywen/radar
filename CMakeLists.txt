@@ -24,6 +24,9 @@ endif()
 set(RADAR_SOURCES
     src/platform/RadarDeviceCommon.cpp
     src/platform/BoardInstance.cpp
+    src/strata/BridgeSerial.cpp
+    src/strata/BridgeProtocol.cpp
+    src/strata/SerialPort.cpp
     example/raw_data.cpp
     )
 
@@ -38,5 +41,9 @@ message(STATUS "[Ross]: include directory: ${CMAKE_CURRENT_SOURCE_DIR}/include")
 target_include_directories(radar_test PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
 
 
+
+# 用下面這兩句來編譯
+# cmake -B build
+# cmake --build build
 
 
